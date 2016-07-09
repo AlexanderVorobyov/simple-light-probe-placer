@@ -70,9 +70,7 @@ namespace SimpleLightProbePlacer.Editor
             var go = new GameObject("Light Probe Group Control");
 
             go.AddComponent<LightProbeGroupControl>();
-
-            GameObjectUtility.SetParentAndAlign(go, menuCommand.context as  GameObject);
-        
+            GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
             Undo.RegisterCreatedObjectUndo(go, "Create Light Probe Group Control");
 
             Selection.activeGameObject = go;

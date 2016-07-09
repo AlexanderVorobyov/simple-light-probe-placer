@@ -22,12 +22,13 @@
 | **Simple Light Probe Placer** |
 
 **Simple Light Probe Placer** it is simple tool for [Unity3d](https://unity3d.com/)
-and it help you easily placing **Light Probes** in your scene.
+and it help you easily place **Light Probes** in your scene.
 It's provides two new components: **Light Probe Volume** and **Light Probe Group Control**,
 on which you can read below.
 
 | Version | Description |
 | --- | --- |
+| **1.0.10** | Some fixes. |
 | **1.0.9.1** |  |
 
 # Light Probe Volume
@@ -80,7 +81,7 @@ represents places in scene, where it will create **Light Probe**.
 > You can manually change origin position and size.
 
 ## Density
-**Light Probe Volume** has two types of density: fixed and float.
+**Light Probe Volume** has two types of density: **Fixed** and **Float**.
 
 | [<img src="Documentation/img/inspector_lpv_type.jpg" alt="Density type" />](https://github.com/AlexanderVorobyov/simple-light-probe-placer/raw/master/Documentation/img/inspector_lpv_type.jpg) |
 | :---: |
@@ -155,7 +156,7 @@ In scene it will looks like this (without 3d gimzo).
 | **Merge Closest Light Probes** | Merge closest positions depending on merge distance. |
 | **Merge distance** | The minimal distance between probe positions for merging. |
 | **Point Light Settings** | Provides settings for **Point Lights**. |
-| **Use Point Lights** | Determines whether it will use **Light Points** for creating porbes positions. |
+| **Use Point Lights** | Determines whether it will use **Light Points** for creating probes positions. |
 | **Range** | Distance from **Point Light** for create probe positions around. |
 
 ## Point Lights

@@ -8,27 +8,26 @@ namespace SimpleLightProbePlacer
     [AddComponentMenu("Rendering/Light Probe Volume")]
     public class LightProbeVolume : TransformVolume
     {
-        public static Color EditorColor = new Color(1, 0.9f, 0.25f);
+        [SerializeField] private LightProbeVolumeType m_type = LightProbeVolumeType.Fixed;
+        [SerializeField] private Vector3 m_densityFixed = Vector3.one;
+        [SerializeField] private Vector3 m_densityFloat = Vector3.one;
 
-        [Space(5)]
-        public LightProbeVolumeType Type = LightProbeVolumeType.Fixed;
-
-        [SerializeField] [HideInInspector] private Vector3 m_densityFixed = Vector3.one;
-        [SerializeField] [HideInInspector] private Vector3 m_densityFloat = Vector3.one;
-
+        public LightProbeVolumeType Type { get { return m_type; } set { m_type = value; } }
         public Vector3 Density
         {
-            get { return Type == LightProbeVolumeType.Fixed ? m_densityFixed : m_densityFloat; }
+            get { return m_type == LightProbeVolumeType.Fixed ? m_densityFixed : m_densityFloat; }
             set
             {
-                if (Type == LightProbeVolumeType.Fixed) m_densityFixed = value;
+                if (m_type == LightProbeVolumeType.Fixed) m_densityFixed = value;
                 else m_densityFloat = value;
             }
         }
-        
+
+        public static Color EditorColor { get { return new Color(1, 0.9f, 0.25f); } }
+
         public List<Vector3> CreatePositions()
         {
-            return CreatePositions(Type);
+            return CreatePositions(m_type);
         }
 
         public List<Vector3> CreatePositions(LightProbeVolumeType type)
@@ -56,9 +55,7 @@ namespace SimpleLightProbePlacer
                     for (int z = 0; z <= density.z; z++)
                     {
                         var probePos = offset + new Vector3(x * moveX, y * moveY, z * moveZ);
-
                         probePos = volumeTransform.TransformPoint(probePos);
-
                         posList.Add(probePos);
                     }
                 }
@@ -77,7 +74,6 @@ namespace SimpleLightProbePlacer
             var stepZ = Mathf.FloorToInt(size.z / density.z);
 
             offset -= size * 0.5f;
-
             offset.x += (size.x - stepX * density.x) * 0.5f;
             offset.y += (size.y - stepY * density.y) * 0.5f;
             offset.z += (size.z - stepZ * density.z) * 0.5f;
@@ -89,9 +85,7 @@ namespace SimpleLightProbePlacer
                     for (int z = 0; z <= stepZ; z++)
                     {
                         var probePos = offset + new Vector3(x * density.x, y * density.y, z * density.z);
-
                         probePos = volumeTransform.TransformPoint(probePos);
-
                         posList.Add(probePos);
                     }
                 }

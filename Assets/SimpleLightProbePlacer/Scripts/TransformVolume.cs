@@ -11,10 +11,11 @@ namespace SimpleLightProbePlacer
     [AddComponentMenu("")]
     public class TransformVolume : MonoBehaviour
     {
-        public Volume Volume = new Volume(Vector3.zero, Vector3.one);
+        [SerializeField] private Volume m_volume = new Volume(Vector3.zero, Vector3.one);
 
-        public Vector3 Origin { get { return Volume.Origin; } }
-        public Vector3 Size { get { return Volume.Size; } }
+        public Volume Volume { get { return m_volume; } set { m_volume = value; } }
+        public Vector3 Origin { get { return m_volume.Origin; } }
+        public Vector3 Size { get { return m_volume.Size; } }
 
         public bool IsInBounds(Vector3[] points)
         {
@@ -61,11 +62,11 @@ namespace SimpleLightProbePlacer
 
             for (int i = 0; i < corners.Length; i++)
             {
-                corners[i].x *= Volume.Size.x;
-                corners[i].y *= Volume.Size.y;
-                corners[i].z *= Volume.Size.z;
+                corners[i].x *= m_volume.Size.x;
+                corners[i].y *= m_volume.Size.y;
+                corners[i].z *= m_volume.Size.z;
 
-                corners[i] = transform.TransformPoint(Volume.Origin + corners[i]);
+                corners[i] = transform.TransformPoint(m_volume.Origin + corners[i]);
             }
 
             return corners;
@@ -145,7 +146,7 @@ namespace SimpleLightProbePlacer
             sides[4] = forward;
             sides[5] = -forward;
 
-            return transform.TransformPoint(sides[side] * GetSizeAxis(side) + Volume.Origin);
+            return transform.TransformPoint(sides[side] * GetSizeAxis(side) + m_volume.Origin);
         }
 
         public float GetSizeAxis(int side)
@@ -153,10 +154,10 @@ namespace SimpleLightProbePlacer
             switch (side)
             {
                 case 0:
-                case 1: return Volume.Size.x * 0.5f;
+                case 1: return m_volume.Size.x * 0.5f;
                 case 2:
-                case 3: return Volume.Size.y * 0.5f;
-                default: return Volume.Size.z * 0.5f;
+                case 3: return m_volume.Size.y * 0.5f;
+                default: return m_volume.Size.z * 0.5f;
             }
         }
 

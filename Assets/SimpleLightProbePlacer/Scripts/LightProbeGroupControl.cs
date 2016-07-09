@@ -8,28 +8,31 @@ namespace SimpleLightProbePlacer
     [AddComponentMenu("Rendering/Light Probe Group Control")]
     public class LightProbeGroupControl : MonoBehaviour
     {
-        public float MergeDistance = 0.5f;
-        public int MergedProbes;
-
-        public bool UsePointLights = true;
-        public float PointLightRange = 1;
-
-        private LightProbeGroup m_lightProbeGroup;
+        [SerializeField] private float m_mergeDistance = 0.5f;
+        [SerializeField] private bool m_usePointLights = true;
+        [SerializeField] private float m_pointLightRange = 1;
         
+        public float MergeDistance { get { return m_mergeDistance; } set { m_mergeDistance = value; } }
+        public int MergedProbes { get { return m_mergedProbes; } }
+        public bool UsePointLights { get { return m_usePointLights; } set { m_usePointLights = value; } }
+        public float PointLightRange { get { return m_pointLightRange; } set { m_pointLightRange = value; } }
+
         public LightProbeGroup LightProbeGroup
         {
             get
             {
                 if (m_lightProbeGroup != null) return m_lightProbeGroup;
-
                 return m_lightProbeGroup = GetComponent<LightProbeGroup>();
             }
         }
 
+        private int m_mergedProbes;
+        private LightProbeGroup m_lightProbeGroup;
+
         public void DeleteAll()
         {
             LightProbeGroup.probePositions = null;
-            MergedProbes = 0;
+            m_mergedProbes = 0;
         }
 
         public void Create()
@@ -37,8 +40,8 @@ namespace SimpleLightProbePlacer
             DeleteAll();
 
             List<Vector3> positions = CreatePositions();
-            positions.AddRange(CreateAroundPointLights(PointLightRange));
-            positions = MergeClosestPositions(positions, MergeDistance, out MergedProbes);
+            positions.AddRange(CreateAroundPointLights(m_pointLightRange));
+            positions = MergeClosestPositions(positions, m_mergeDistance, out m_mergedProbes);
 
             ApplyPositions(positions);
         }
@@ -47,7 +50,7 @@ namespace SimpleLightProbePlacer
         {
             if (LightProbeGroup.probePositions == null) return;
 
-            List<Vector3> positions = MergeClosestPositions(LightProbeGroup.probePositions.ToList(), MergeDistance, out MergedProbes);
+            List<Vector3> positions = MergeClosestPositions(LightProbeGroup.probePositions.ToList(), m_mergeDistance, out m_mergedProbes);
             positions = positions.Select(x => transform.TransformPoint(x)).ToList();
 
             ApplyPositions(positions);
@@ -99,7 +102,7 @@ namespace SimpleLightProbePlacer
             }
 
             int exist = positions.Count;
-            var done = false;
+            bool done = false;
 
             while (!done)
             {
@@ -108,7 +111,6 @@ namespace SimpleLightProbePlacer
                 for (int i = 0; i < positions.Count; i++)
                 {
                     List<Vector3> points = positions.Where(x => (x - positions[i]).magnitude < distance).ToList();
-
                     if (points.Count > 0) closest.Add(positions[i], points);
                 }
 
@@ -117,10 +119,7 @@ namespace SimpleLightProbePlacer
 
                 for (int i = 0; i < keys.Count; i++)
                 {
-                    List<Vector3> points = closest[keys[i]];
-
-                    var center = points.Aggregate(Vector3.zero, (result, target) => result + target) / points.Count;
-
+                    var center = closest[keys[i]].Aggregate(Vector3.zero, (result, target) => result + target) / closest[keys[i]].Count;
                     if (!positions.Exists(x => x == center)) positions.Add(center);
                 }
 

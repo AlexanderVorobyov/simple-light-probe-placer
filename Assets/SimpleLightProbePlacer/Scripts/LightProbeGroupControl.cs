@@ -111,7 +111,10 @@ namespace SimpleLightProbePlacer
                 for (int i = 0; i < positions.Count; i++)
                 {
                     List<Vector3> points = positions.Where(x => (x - positions[i]).magnitude < distance).ToList();
-                    if (points.Count > 0) closest.Add(positions[i], points);
+                    if (points.Count > 0 && !closest.ContainsKey(positions[i]))
+                    {
+                        closest.Add(positions[i], points);
+                    }
                 }
 
                 positions.Clear();

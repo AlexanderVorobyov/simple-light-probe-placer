@@ -19,15 +19,18 @@
 
 | [<img src="Documentation/img/background.jpg" alt="" height="360px" />](https://github.com/AlexanderVorobyov/simple-light-probe-placer/raw/master/Documentation/img/background.jpg) |
 | :---: |
-| **Simple Light Probe Placer** |
+| **[Simple Light Probe Placer](https://www.assetstore.unity3d.com/en/#!/content/58290)** |
 
 **Simple Light Probe Placer** it is simple tool for [Unity3d](https://unity3d.com/)
 and it help you easily place **Light Probes** in your scene.
 It's provides two new components: **Light Probe Volume** and **Light Probe Group Control**,
 on which you can read below.
 
+**[Link to AssetStore](https://www.assetstore.unity3d.com/en/#!/content/58290)**
+
 | Version | Description |
 | --- | --- |
+| **1.0.11** |  Small fix on MergeClosestPositions, for preventing error. |
 | **1.0.10** | Some fixes. |
 | **1.0.9.1** |  |
 

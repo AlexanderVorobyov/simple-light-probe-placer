@@ -30,6 +30,7 @@ on which you can read below.
 
 | Version | Description |
 | --- | --- |
+| **1.0.12** | Update to Unity 5.6.2 (This is a last update). |
 | **1.0.11** |  Small fix on MergeClosestPositions, for preventing error. |
 | **1.0.10** | Some fixes. |
 | **1.0.9.1** |  |
@@ -40,7 +41,7 @@ and can help you easily place your probes all over the scene.
 Provides simple volume (or bounding box) with density settings,
 which you can use for determine where probes should be.
 
-<a name="crt-lpv" />
+<a name="crt-lpv"></a>
 ## Create
 You can create new instance, just using create menu on top of
 **Hierarchy** tab or add new **Light Probe Volume** component to your
@@ -64,7 +65,7 @@ represents places in scene, where it will create **Light Probe**.
 | :---: |
 | Light Probe Volume in scene. |
 
-<a name="ins-lpv" />
+<a name="ins-lpv"></a>
 ## Inspector
 | [<img src="Documentation/img/inspector_lpv.jpg" alt="Light Probe Volume in inspector" />](https://github.com/AlexanderVorobyov/simple-light-probe-placer/raw/master/Documentation/img/inspector_lpv.jpg) |
 | :---: |
@@ -121,7 +122,7 @@ attached to the same **GameObject**. It will finds all **Light Probe Volume** an
 
 > **Note:** **Light Probe Group Control** require **Light Probe Group** component.
 
-<a name="crt-lpgc" />
+<a name="crt-lpgc"></a>
 ## Create
 You can create new instance, just using create menu on top of
 **Hierarchy** tab or add new **Light Probe Group Control** component to your
@@ -145,7 +146,7 @@ In scene it will looks like this (without 3d gimzo).
 | :---: |
 | Light Group Control in scene. |
 
-<a name="ins-lpgc" />
+<a name="ins-lpgc"></a>
 ## Inspector
 | [<img src="Documentation/img/inspector_lpgc.jpg" alt="Light Group Control in inspector" />](https://github.com/AlexanderVorobyov/simple-light-probe-placer/raw/master/Documentation/img/inspector_lpgc.jpg) |
 | :---: |

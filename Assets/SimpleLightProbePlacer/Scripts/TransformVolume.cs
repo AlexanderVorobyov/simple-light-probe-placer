@@ -175,12 +175,12 @@ namespace SimpleLightProbePlacer
                 controlHandles[i] = transformVolume.GetSidePosition(i);
             }
 
-            controlHandles[0] = Handles.Slider(controlHandles[0], transform.right, handleSize, Handles.DotCap, 1);
-            controlHandles[1] = Handles.Slider(controlHandles[1], transform.right, handleSize, Handles.DotCap, 1);
-            controlHandles[2] = Handles.Slider(controlHandles[2], transform.up, handleSize, Handles.DotCap, 1);
-            controlHandles[3] = Handles.Slider(controlHandles[3], transform.up, handleSize, Handles.DotCap, 1);
-            controlHandles[4] = Handles.Slider(controlHandles[4], transform.forward, handleSize, Handles.DotCap, 1);
-            controlHandles[5] = Handles.Slider(controlHandles[5], transform.forward, handleSize, Handles.DotCap, 1);
+            controlHandles[0] = Handles.Slider(controlHandles[0], transform.right, handleSize, Handles.DotHandleCap, 1);
+            controlHandles[1] = Handles.Slider(controlHandles[1], transform.right, handleSize, Handles.DotHandleCap, 1);
+            controlHandles[2] = Handles.Slider(controlHandles[2], transform.up, handleSize, Handles.DotHandleCap, 1);
+            controlHandles[3] = Handles.Slider(controlHandles[3], transform.up, handleSize, Handles.DotHandleCap, 1);
+            controlHandles[4] = Handles.Slider(controlHandles[4], transform.forward, handleSize, Handles.DotHandleCap, 1);
+            controlHandles[5] = Handles.Slider(controlHandles[5], transform.forward, handleSize, Handles.DotHandleCap, 1);
 
             origin.x = transform.InverseTransformPoint((controlHandles[0] + controlHandles[1]) * 0.5f).x;
             origin.y = transform.InverseTransformPoint((controlHandles[2] + controlHandles[3]) * 0.5f).y;

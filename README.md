@@ -1,3 +1,4 @@
+> **This repository has been deprecated.**
 
 # Simple Light Probe Placer
 
